@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
+		<attributes>
+			<attribute name="test" value="true"/>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v9.0">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry including="**/*.java" kind="src" output="target/classes" path="src">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/jsp_pj/WebContent/WEB-INF/lib/activation-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/jsp_pj/WebContent/WEB-INF/lib/itext-asian-5.2.0.jar"/>
+	<classpathentry kind="lib" path="/jsp_pj/WebContent/WEB-INF/lib/itextpdf-5.5.13.2.jar"/>
+	<classpathentry kind="lib" path="/jsp_pj/WebContent/WEB-INF/lib/itext-pdfa-5.5.13.2.jar"/>
+	<classpathentry kind="lib" path="/jsp_pj/WebContent/WEB-INF/lib/itext-xtra-5.5.13.2.jar"/>
+	<classpathentry kind="lib" path="/jsp_pj/WebContent/WEB-INF/lib/jackson-databind-2.12.1.jar"/>
+	<classpathentry kind="lib" path="/jsp_pj/WebContent/WEB-INF/lib/jackson-databind-2.9.7.jar"/>
+	<classpathentry kind="lib" path="/jsp_pj/WebContent/WEB-INF/lib/javax.mail-api-1.4.7.jar"/>
+	<classpathentry kind="lib" path="/jsp_pj/WebContent/WEB-INF/lib/jcommon-1.0.24.jar"/>
+	<classpathentry kind="lib" path="/jsp_pj/WebContent/WEB-INF/lib/jfreechart-1.0.18.jar"/>
+	<classpathentry kind="lib" path="/jsp_pj/WebContent/WEB-INF/lib/json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/jsp_pj/WebContent/WEB-INF/lib/mail-1.4.7.jar"/>
+	<classpathentry kind="lib" path="/jsp_pj/WebContent/WEB-INF/lib/mybatis-3.5.6.jar"/>
+	<classpathentry kind="lib" path="/jsp_pj/WebContent/WEB-INF/lib/mysql-connector-java-5.1.48-bin.jar"/>
+	<classpathentry kind="lib" path="/jsp_pj/WebContent/WEB-INF/lib/tika-app-2.1.0.jar"/>
+	<classpathentry kind="lib" path="/jsp_pj/WebContent/WEB-INF/lib/xalan-2.7.2.jar"/>
+	<classpathentry kind="lib" path="/jsp_pj/WebContent/WEB-INF/lib/xmlworker-5.5.13.2.jar"/>
+	<classpathentry kind="lib" path="C:/oraclexe/app/oracle/product/11.2.0/server/jdbc/lib/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="/jsp_pj/WebContent/WEB-INF/lib/cos.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>

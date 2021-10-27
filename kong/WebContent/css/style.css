@@ -1,0 +1,775 @@
+/* 전체 */
+@charset "UTF-8";
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+}
+
+
+/**************************************** inc_menu  ****************************/
+nav{
+    height: 100px;
+    border-bottom: 1px solid #5A9AF5;;
+}
+
+nav img{
+    width: 260px;
+    position: absolute;
+    top: 7px;
+    left: 5%;
+}
+
+nav ul{
+    float: right;
+    text-align : right;
+    margin-right: 25px;
+   	width: 80%;
+}
+
+nav ul li{
+    display: inline-block;
+    line-height: 80px;
+    margin: 0 15px;
+}
+
+nav ul li a{
+    position: relative;
+    line-height: 80px;
+    color: #5A9AF5;
+   	top : 17px;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    bottom: 0;
+}
+
+nav ul li a:hover{
+    color : #0d60d0;
+}
+
+
+label #btn,
+label #cancel{
+    color: #5A9AF5;
+    font-size: 30px;
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    cursor: pointer;
+    display: none;
+}
+
+#check{
+    display: none;
+}
+
+
+/**************************************** inc_menu  ****************************/
+
+
+
+
+
+
+
+
+
+
+
+
+/**************************************** body  ****************************/
+
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+    background-size: cover;
+}
+
+/* wave그림부분 */
+.wave{
+    position: fixed;
+    height: 100%;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    opacity: 30%;
+}
+
+/* body안에 container클래스 */
+.container{
+    width: 100vw;
+    height: 80vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 7rem;
+    padding: 0 2rem;
+}
+
+
+/**************************************** body end ****************************/
+
+
+
+
+
+
+
+
+/**************************************** form 시작  ****************************/
+
+form{
+    width: 360px;
+}
+
+/* logo클래스 */
+.logo{
+    width: 300px;
+}
+
+/* 환영합니다 글씨 */
+form h2{
+    font-size: 2.9rem;
+    text-transform: uppercase;
+    margin: 15px 0;
+    color: #5A9AF5;
+    opacity: 50%;
+}
+/* input 부분 */
+.input-div{
+    position: relative;
+    display: grid;
+    grid-template-columns: 7% 93%;
+    margin: 25px 0;
+    padding: 5px 0;
+    border-bottom: 2px solid #d9d9d9;
+    transition: all .4s cubic-bezier(.25,.8,.25,1);
+}
+
+
+.input-div.user{
+  margin-top: 0; 
+}
+
+.input-div.password{
+    margin-bottom: 4px; 
+  }
+
+  /* 자물쇠 부분 i 클래스 */
+.i{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+}
+
+.i i{
+      color: #d9d9d9;
+      transition: .3s;
+}
+
+
+.input-div >div{
+    position: relative;
+    height: 45px;
+}
+
+.input-div >div #insert_label{
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 18px;
+    transform: .3s;
+}
+
+
+.input{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border: none;
+    outline: none;
+    background: none;
+    padding: 0.5rem 0.7rem;
+    font-size: 1.2rem;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #555;
+}
+
+/* 비밀번호 찾기 링크 */
+.forget{
+    display: block;
+    text-align: right;
+    text-decoration: none;
+    color: #999;
+    font-size: 0.9rem;
+    transition: .3s;
+}
+
+.forget:hover{
+    color: #5A9AF5;
+}
+
+/* img클래스 */
+.Loginimg{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    left: 5%;
+}
+
+/* img 클래스 안에 있는 img - 로고부분 */
+.Loginimg login{
+    width: 500px;
+}
+
+/* 로그인폼 내부 */
+.login-container{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding-left: 250px;
+
+}
+
+
+/**************************************** form end  ****************************/
+
+
+
+
+
+
+/**************************************** about  ****************************/
+
+#slider{
+    margin-top: 50px;
+}
+
+.card_container{
+	padding: 10px 50px;
+}
+
+.img-area{
+	padding-top : 20px;
+    width: 150px;
+    height: 190px;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.img-area img{
+    width: 20%;
+
+}
+
+.card_content{
+    text-align: center;
+    padding: 20px;
+    color: black;
+    background-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 10px 5px 5px #e4e4e4;
+    border : 2px solid rgba(0, 0, 0, 0.24);;
+    border-radius: 25px;
+    backdrop-filter : blur(12px);
+    -webkit-backdrop-filter : blur(12px);
+    height: 60vh;
+
+}
+
+.card_content h2{
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+}
+
+.card_content p{
+    line-height: 1.9;
+}
+
+.owl-dots{
+    text-align: center;    
+   	margin: 30px;
+} 
+
+
+.owl-dot{
+    display: inline-block;
+    height: 20px !important;
+    width: 20px !important;
+    background-color: #ddd !important;
+    opacity: .8;
+    margin: 10px 10px;
+    border-radius: 50%;
+}
+
+.owl-dot.active{
+    background-color: black !important ;
+}
+
+
+/**************************************** about  ****************************/
+
+
+
+
+
+
+
+
+
+
+
+
+/**************************************** main  ****************************/
+
+section{
+    position: relative;
+    width: 100%;
+    min-height: 80vh;
+    padding: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+}
+
+.content_index{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.content_index .textBox{
+    position: relative;
+   	padding-bottom : 100px;
+    max-width: 2000px; 
+}
+
+.content_index .textBox h2{
+    color: #333;
+    font-size: 3em;
+    line-height: 1.4em;
+    font-weight: 200;
+    color : #5A9AF5;
+}
+
+.content_index .textBox h2 span{
+    color: #4a93fa;
+    font-size: 1.2em;
+    font-weight: 200;   
+}
+
+.content_index .textBox p{
+    color: #333;
+    font-size: 20px;
+}
+
+.content_index .textBox a{
+    display: inline-block;
+    margin-top: 20px;
+    padding: 8px 20px;
+    background: #4a93fa;
+    color: #fff;
+    border-radius: 40px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.content_index .imgBox{
+    width: 400;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 50px;
+}
+
+.content_index .imgBox img{
+      /* 옆에 이미지 */
+    max-width: 250;
+}
+
+.content_index .thumb_index{
+	  padding-top : 50px;
+}	
+
+.thumb{
+    position: absolute;
+    padding-top : 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+}
+
+.thumb li{
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+    cursor: pointer;
+}
+
+.thumb li:hover{
+    transform: translateY(-15px);
+}
+
+.thumb li img{
+    /* 밑에 3개 이미지 */
+    max-width: 200px;
+    
+}
+
+/**************************************** main end  ****************************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**************************************** join  ****************************/
+.join-container{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-around;
+}
+
+/* input 부분 */
+.input_field{
+    position: relative;
+    display: grid;
+    grid-template-columns: 7% 93%;
+    margin: 30px 20px;
+    padding: 20px 0;
+    box-shadow: 10px 5px 5px #e4e4e4;
+    border-radius : 10px;
+    opacity: 50%;
+    width: 90%;
+    height: 60px;
+}
+
+/**************************************** join end  ****************************/
+
+
+
+
+
+
+
+
+
+
+
+/**************************************** login  ****************************/
+.btn{
+    display: block;
+    width: 100%;
+    height: 50px;
+    border-radius: 25px;
+    margin: 1rem 0;
+    font-size: 1.2rem;
+    outline: none;
+    border: none;
+    background-image: linear-gradient(to right, #63ABFA,#5A9AF5,#4978CC);
+    cursor: pointer;
+    color: #fff;
+    text-transform: uppercase;
+    font-family: 'Noto Sans KR', sans-serif; 
+    background-size: 200%;
+    transition: .5s;
+}
+
+.btn:hover{
+    background-position: right;
+}
+
+/**************************************** login end  ****************************/
+
+
+
+
+
+
+
+
+
+
+
+/**************************************** footer  ****************************/
+footer{
+    position: static;
+    bottom : 0;
+    height: auto;
+    width: 100vw;
+    color: #5A9AF5;
+    border-top: 1px solid #5A9AF5;
+}
+
+.footer-bottom{
+    background: #fff;
+    width: 100vw;
+    padding: 30px 0;
+    text-align: center;
+}
+
+.footer-bottom p{
+    font-size: 14px;
+    word-spacing: 2px;
+    text-transform: capitalize;
+}
+
+.footer-bottom span{
+	text-transform : none;
+    opacity: .6;
+    font-weight: 200;
+}
+/**************************************** footer end  ****************************/
+
+
+
+
+
+
+
+
+
+
+/**************************************** responsive  ****************************/
+
+@media screen and (max-width : 1200px) {
+
+	 .thumb{
+    /* 밑에 3개 이미지 */
+   		 transform: translateX(-50%);
+    
+	}
+	
+}	
+@media screen and (max-width : 1050px) {
+   
+    .container{
+        grid-gap: 5rem;
+    }
+    
+     /* 메뉴 이미지 */
+     nav img{
+        left: 5%;
+    }
+
+	
+	.content_index{
+    position: relative;
+    width: 100%;
+    flex-direction :column-reverse;
+    align-items: center;
+	}
+
+	.content_index .imgBox img{
+      /* 옆에 이미지 */
+   	 	margin-bottom: 20px;
+	}
+	
+	  .Loginimg img{
+        width: 150%;
+    }
+	    
+
+
+}
+
+
+@media screen and (max-width : 1000px){
+  
+    form{
+        width: 290px;
+    }
+    
+    form h2{
+        font-size: 2.4rem;
+        margin: 8px 0;
+    }
+    
+    nav img{
+        left: 3%;
+    }
+    
+    nav ul{
+    margin-right: 5px;
+	}
+    
+    nav ul li a{
+   	 	font-size: 20px;
+   	 
+	}
+    
+    .content_index{
+	    position: relative;
+	    width: 100%;
+	    display: flex;
+	    align-items: center;
+	}
+	
+
+}
+
+@media screen and (max-width : 900px){
+    /* 메뉴부분 */ 
+    nav img{
+        left: 6%;
+        top: 20px;
+        width: 200px;
+    }
+    
+    .login-container{
+	    padding-left: 0;
+	}
+
+	nav ul li{
+		margin: 0 10px;
+	}
+    nav ul li a{
+        font-size: 17px;        
+    }
+   
+   	/* index 이미지 */
+    .Loginimg{
+        display: none;
+    }
+    
+    
+    .container{
+        grid-template-columns: 1fr;      
+    }
+    
+    .content_index{
+	    height: 100%;
+	}
+	
+    .wave{
+        display: none;
+    }
+    
+    .join img{
+        display: none;
+    }
+    
+     .img img{
+        display: none;
+    }
+
+    .login-container{
+        justify-content: center;
+    }
+    
+   .join-container{
+       justify-content: center;
+       margin-bottom: 30%;
+   }
+   
+   
+
+}
+
+@media  screen and  (max-width : 860px){
+	 body{
+        height: calc(100vh-800px);
+    }
+  
+ 	nav img{
+       width: 200px;
+    }
+  
+    label #btn{
+       display: block; 
+       position: absolute;
+       margin-top : 5px;
+       right: 0;
+    }
+    
+   nav ul{
+  		z-index: 50;
+   		position : fixed;
+        width: 100%;
+        height: 100vh;
+        margin : 0;
+        background : #d9e3f1;
+        left : -100%;
+        top : 100px;
+        text-align: left;
+        padding-left : 20px;
+        transition: all .5s ease-in-out;
+    }
+
+    nav ul li{
+        display: block;
+        margin: 50px 0;
+        line-height: 30px;
+
+    }
+
+    nav ul li a{
+        font-size: 30px;
+        text-align: left;
+        line-height: 30px;
+    }
+
+    nav ul li a:hover{
+       font-size: 30px;
+       text-align: left;
+       line-height: 30px;
+       background: none;
+    }
+    
+    #check:checked ~ ul{
+    	top : 100px;
+		left: 0;
+		
+    }
+
+    #check:checked ~ label #btn{
+        display: none;
+    }
+
+    #check:checked ~ label #cancel{
+    	position : absolute;
+        display: block;
+        right: 0;
+    }  
+    
+    .thumb li img{
+    /* 밑에 3개 이미지 */
+    max-width: 100px;
+    
+}
+
+	.owl-dots{
+	    display: none
+		
+} 
+
+	.card_container{
+		padding: 60px 30px;
+	}
+
+	
+}
+
+
+
+
+	
+
+

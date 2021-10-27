@@ -1,0 +1,315 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com/kong/mybatis/KongMapper.xml">
+
+<select id="test" parameterType="String" resultType="String">
+	
+	select '사과' from dual
+	
+</select>
+
+<insert id="memberInsert" parameterType="com.kong.dto.MemberDTO">
+
+	INSERT INTO MEMBER
+	(
+	    NO
+	  , ID
+	  , PASSWD 
+	  , NAME 
+	  , EMAIL
+	) 
+	VALUES
+	(
+	    SEQ_MEMBER.NEXTVAL
+	  , #{id} 
+	  , #{passwd}
+	  , #{name}
+	  , #{email}
+	)
+
+</insert>
+
+<update id="ChangePasswd" parameterType="com.kong.dto.MemberDTO">
+
+	UPDATE MEMBER
+	SET    PASSWD = #{passwd}
+	WHERE  ID     = #{id}
+
+</update>
+
+<delete id="DeleteMember" parameterType="com.kong.dto.MemberDTO">
+	
+	DELETE FROM MEMBER
+	WHERE  PASSWD = #{passwd}
+
+</delete>
+
+<select id="idCheck" parameterType="String" resultType="String">
+	
+	SELECT * 
+	FROM   MEMBER
+	WHERE  ID = #{id}
+	
+</select>
+
+<select id="emailCheck" parameterType="String" resultType="String">
+	
+	SELECT * 
+	FROM   MEMBER
+	WHERE  EMAIL = #{email}
+	
+</select>
+
+<select id="LoginCheck" parameterType="com.kong.dto.MemberDTO" resultType="com.kong.dto.MemberDTO">
+	
+	SELECT * 
+	FROM   MEMBER
+	WHERE  ID = #{id} AND PASSWD = #{passwd}
+	
+</select>
+
+<select id="PasswdCheck" parameterType="com.kong.dto.MemberDTO" resultType="com.kong.dto.MemberDTO">
+	
+	SELECT * 
+	FROM   MEMBER
+	WHERE  PASSWD = #{passwd} AND  ID = #{id}
+	
+</select>
+
+
+
+
+
+
+<!-- board 게시판  -->
+
+<insert id="boardInsert" parameterType="com.kong.dto.BoardDTO">
+
+	INSERT INTO BOARD
+	(
+	    NO 
+	  , TYPE
+	  , SUBJECT
+	  , BOARD_IMG
+	  , WRITER
+	  , CONTENT
+	  , SEARCHNUM
+	) 
+	VALUES
+	(
+	    seq_board.NEXTVAL
+	  , #{type} 
+	  , #{subject}
+	  , #{board_img}
+	  , #{writer}
+	  , #{content}
+	  , #{searchNum}
+	)
+
+</insert>
+
+<select id="getSelectAll" resultType="com.kong.dto.BoardDTO">
+	
+	SELECT *
+	FROM   BOARD
+
+</select>
+
+
+<!-- 페이징 처리 -->
+<select id="PagingListAll" resultType="com.kong.dto.BoardDTO">
+
+	<![CDATA[
+		SELECT * 
+		FROM   (
+				 SELECT ROWNUM RN,
+		a.*
+		FROM   (
+				 SELECT *
+				 FROM 	BOARD
+				 WHERE  NO > 0
+	]]>
+	
+		<if test="keyword == 'type'">
+		
+		<![CDATA[AND TYPE LIKE '%'||#{search}||'%']]>
+		
+	</if>
+	
+	<if test="keyword == 'subject'">
+	
+		<![CDATA[AND SUBJECT LIKE '%'||#{search}||'%']]>
+	
+	</if>
+	<if test="keyword == 'writer'">
+	
+		<![CDATA[AND WRITER LIKE '%'||#{search}||'%']]>
+	
+	</if>
+	
+	<if test="keyword == 'subject_writer'">
+	
+		<![CDATA[AND SUBJECT LIKE '%'||#{search}||'%' OR WRITER LIKE '%'||#{search}||'%']]>
+	
+	</if>
+		ORDER BY NO DESC
+	
+	<![CDATA[
+			   )a
+			   )
+		WHERE    RN BETWEEN #{pageStart} AND #{perPageNum}		
+				
+	]]>
+	
+	
+
+</select>
+
+<!-- 전체 카운트 -->
+<select id="PageCount" resultType="int">
+
+	<![CDATA[
+	
+		SELECT COUNT(NO)
+		FROM   BOARD
+		WHERE  NO > 0	
+	]]>
+	<if test="keyword == 'type'">
+		
+		<![CDATA[AND TYPE LIKE '%'||#{search}||'%']]>
+		
+	</if>
+	
+	<if test="keyword == 'subject'">
+	
+		<![CDATA[AND SUBJECT LIKE '%'||#{search}||'%']]>
+	
+	</if>
+	<if test="keyword == 'writer'">
+	
+		<![CDATA[AND WRITER LIKE '%'||#{search}||'%']]>
+	
+	</if>
+	
+	<if test="keyword == 'subject_writer'">
+	
+		<![CDATA[AND SUBJECT LIKE '%'||#{search}||'%' OR WRITER LIKE '%'||#{search}||'%']]>
+	
+	</if>
+
+</select>
+
+
+<select id="getSelectOne" parameterType="com.kong.dto.BoardDTO" resultType="com.kong.dto.BoardDTO">
+	
+	SELECT *
+	FROM   BOARD
+	Where  NO = #{no}
+
+</select>
+
+
+<update id="updateCount" parameterType="int">
+
+	UPDATE BOARD
+	SET    SEARCHNUM = (SEARCHNUM + 1)
+	WHERE  NO        = #{no}
+	
+</update>
+
+
+<update id="updateBoard" parameterType="com.kong.dto.BoardDTO">
+
+	UPDATE BOARD
+	SET     TYPE        = #{type}
+		  , SUBJECT     = #{subject}
+		  , BOARD_IMG   = #{board_img}
+		  , CONTENT     = #{content}
+		  , CHANGE_DATE = sysdate
+	WHERE   NO          = #{no}
+	
+</update>
+
+<delete id="setDelete" parameterType="int">
+
+	DELETE FROM BOARD
+	WHERE  NO = #{no}
+	
+</delete>
+
+
+
+<!-- reply게시판 -->
+
+<insert id="InsertReply" parameterType="com.kong.dto.ReplyDTO">	
+
+	INSERT INTO REPLY
+	(
+		  NO
+		, WRITER
+		, CONTENT
+		, BOARD_NO
+		, GRP_NUM
+		, PNO
+	)
+	VALUES
+	(
+		  SEQ_REPLY.NEXTVAL
+		, #{writer}
+		, #{content}
+		, #{board_no}
+		, SEQ_GRP_NUM.NEXTVAL
+		, (SELECT NVL(MAX(NO), 0) FROM REPLY)+1
+	)
+
+</insert>
+
+<insert id="InsertReplys" parameterType="com.kong.dto.ReplyDTO">	
+
+	INSERT INTO REPLY
+	(
+		  NO
+		, WRITER
+		, CONTENT
+		, BOARD_NO
+		, GRP_NUM
+		, GRP_ORDER
+		, INDENT
+		, PNO
+		
+	)
+	
+	VALUES
+	
+	(
+		  SEQ_REPLY.NEXTVAL
+		, #{writer}
+		, #{content}
+		, #{board_no}
+		, (SELECT GRP_NUM FROM REPLY WHERE NO = #{no})
+		, (SELECT COUNT(*) FROM REPLY WHERE GRP_NUM = (SELECT GRP_NUM FROM REPLY WHERE NO = #{no}))
+		, (SELECT INDENT FROM REPLY WHERE NO = #{no})+1
+		, #{no}
+	)
+
+</insert>
+
+<select id="SelectReplyAll" parameterType="com.kong.dto.ReplyDTO" resultType="com.kong.dto.ReplyDTO">
+
+	SELECT * 
+	FROM   REPLY
+	WHERE  BOARD_NO =  #{board_no} and <![CDATA[ INDENT < 2 ]]>
+	ORDER  BY GRP_NUM ASC, INDENT ASC
+
+</select>
+
+<select id="countReply" resultType="int" parameterType="com.kong.dto.ReplyDTO">
+
+	SELECT COUNT(*) FROM REPLY 
+	WHERE BOARD_NO = #{board_no}
+
+</select>
+
+</mapper> 

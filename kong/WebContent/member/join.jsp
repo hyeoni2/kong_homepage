@@ -62,7 +62,7 @@
  <div class="container">
         <div class="join">
             <a href="${path }/Login.do">
-                 <img class="logo" src="${path }/img/logo.png">
+                 <img class="logo" src="${path }/img/logo2.png">
             </a>
         </div>
         <div class="join-container">

@@ -97,6 +97,26 @@ SqlSessionFactory sqlSessionFactory = sqlMapConfig.getSqlSession();
 		
 		return list;
 	}
+
+	//한번보기
+	public ReplyDTO SelectReplyPno(int no) {
+		
+		sqlSession = sqlSessionFactory.openSession();
+		
+		ReplyDTO dto = new ReplyDTO();
+		
+		try {
+			
+			dto = sqlSession.selectOne("SelectReplyPno", no);
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlSession.close();
+		}
+		
+		return dto;
+	}
 	
 	//전체 댓글
 	public int CountReply(ReplyDTO dto) {
@@ -116,6 +136,63 @@ SqlSessionFactory sqlSessionFactory = sqlMapConfig.getSqlSession();
 		}
 		
 		return count;
+	}
+
+	//삭제
+	public int setReplyDelte(int no) {
+		
+		sqlSession = sqlSessionFactory.openSession();
+		int result = 0;
+		
+		try {
+			
+			result = sqlSession.delete("setReplyDelte",no);
+			sqlSession.commit();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlSession.close();
+		}
+		return result;
+	}
+
+	//부모댓삭제
+	public int setReplyDelete_p(int grp_num) {
+		
+		sqlSession = sqlSessionFactory.openSession();
+		int result = 0;
+		
+		try {
+			
+			result = sqlSession.delete("setReplyDelete_p",grp_num);
+			sqlSession.commit();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlSession.close();
+		}
+		return result;
+	}
+
+	//부모댓삭제
+	public int setReplyDeleteBoardNo(int no) {
+		
+		sqlSession = sqlSessionFactory.openSession();
+		int result = 0;
+		
+		try {
+			
+			result = sqlSession.delete("setReplyDeleteBoardNo",no);
+			sqlSession.commit();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlSession.close();
+		}
+		return result;
 	}
 	
 	

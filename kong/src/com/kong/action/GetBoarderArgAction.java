@@ -57,6 +57,11 @@ public class GetBoarderArgAction implements Action {
 			  String   subject   = multi.getParameter("subject");
 			  String   content   = multi.getParameter("content");			
 			  String   board_img = multi.getFilesystemName("board_img");
+
+			  if(board_img == null) {
+				  board_img = "-";
+			  }
+			  
 			  int      searchNum = 0;
 			
 			  BoardDAO dao	   = BoardDAO.getInstance();

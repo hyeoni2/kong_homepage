@@ -18,8 +18,8 @@
 .board_section{
     line-height: 30px;
     display: block;
-    margin: 10px;
     padding: 20px;
+    margin-left : 50px;
 	min-height: 70vh;
 	width: 90%;
 }

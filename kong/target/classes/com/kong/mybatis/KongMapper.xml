@@ -301,7 +301,15 @@
 	SELECT * 
 	FROM   REPLY
 	WHERE  BOARD_NO =  #{board_no} and <![CDATA[ INDENT < 2 ]]>
-	ORDER  BY GRP_NUM ASC, INDENT ASC
+	ORDER  BY GRP_NUM ASC , GRP_ORDER ASC
+
+</select>
+
+<select id="SelectReplyPno" parameterType="int" resultType="com.kong.dto.ReplyDTO">
+
+	SELECT * 
+	FROM   REPLY
+	WHERE  NO =  #{no}
 
 </select>
 
@@ -311,5 +319,29 @@
 	WHERE BOARD_NO = #{board_no}
 
 </select>
+
+<!-- 댓글과 대댓글 지우기  -->
+<delete id="setReplyDelete_p" parameterType="int">
+
+	DELETE FROM REPLY
+	WHERE  GRP_NUM = #{grp_num}
+	
+</delete>
+
+<!-- 대댓글만 지우기  -->
+<delete id="setReplyDelte" parameterType="int">
+
+	DELETE FROM REPLY
+	WHERE  NO = #{no}
+	
+</delete>
+
+<!-- 게시물지울때 댓글도 지우기  -->
+<delete id="setReplyDeleteBoardNo" parameterType="int">
+
+	DELETE FROM REPLY
+	WHERE  BOARD_NO = #{board_no}
+	
+</delete>
 
 </mapper> 

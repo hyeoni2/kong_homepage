@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kong.dao.BoardDAO;
 import com.kong.dao.MemberDAO;
+import com.kong.dao.ReplyDAO;
 import com.kong.dao.Testdao;
 import com.kong.dto.BoardDTO;
+import com.kong.dto.ReplyDTO;
 
 public class BoardDeleteProcAction implements Action {
 	
@@ -53,6 +55,8 @@ public class BoardDeleteProcAction implements Action {
 			out.close();
 		}else {
 			System.out.println("성공");
+			ReplyDAO replyDao = ReplyDAO.getInstance();
+			replyDao.setReplyDeleteBoardNo(no);
 			out.println("<script>");
 			out.println("location.href = 'BoardList.do';");
 			out.println("</script>");

@@ -20,7 +20,7 @@
                     Css를 이용한 디자인 기법을 활용하여 제작하였습니다.<br>
                     그 외에 적용된 자세한 내용은 더보기를 클릭해주세요.
                 </p>
-                    <a href="#">더보기</a>
+                    <a href="${path }/About.do">더보기</a>
 		      
 		        <div class="tumb_index">
 			        <ul class="thumb">
@@ -32,7 +32,7 @@
            	 </div>
 	            
 	            <div class="imgBox">
-	                <img src="${path }/img/logo.png" class="img" style="width: 600px;">
+	                <img src="${path }/img/logo2.png" class="img" style="width: 600px;">
 	            </div>     
         </div>
         

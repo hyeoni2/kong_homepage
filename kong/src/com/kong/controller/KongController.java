@@ -21,6 +21,7 @@ import com.kong.action.ChangePassAction;
 import com.kong.action.ChangePassProcAction;
 import com.kong.action.DeleteMemberAction;
 import com.kong.action.DeleteMemberProcAction;
+import com.kong.action.DeleteReplyAction;
 import com.kong.action.GetBoarderAction;
 import com.kong.action.GetBoarderArgAction;
 import com.kong.action.GetReplyAction;
@@ -197,6 +198,11 @@ public class KongController extends HttpServlet {
 			action = new GetReplysAction();
 			forward = action.excute(request, response);	
 			
+		}else if(command.equals("/DeleteReply.do")) {
+			
+			action = new DeleteReplyAction();
+			forward = action.excute(request, response);	
+
 		}
 		
 		

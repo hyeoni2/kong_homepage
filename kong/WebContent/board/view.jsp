@@ -32,13 +32,23 @@
 	}	
 	
 	.content_area{
-	
 		height: 400px;
 	}
 	
-	.content_img{
-		width: 50%;
+	.img_container{
+		min-width : 60%;
+		padding-top: 20px;
+	}
 	
+	.content_img{
+		width: 60%;
+		
+	}
+
+	.no_data_img{
+	
+		width: 35%;
+		
 	}
 	
 	td{
@@ -61,7 +71,7 @@
 	
 	.button{
 		position: absolute;
-		bottom: 73%;
+		bottom: 77%;
 		right : 10%;
 		
 	}
@@ -94,11 +104,16 @@
 	
 	.reply_list li{
 		float: left;
-		margin-left: 30px;
+	}
+	
+	.view_writer{
+	
+		width: 80px;
+		
 	}
 	
 	.reply_list .view_reply{
-		width : 70%;
+		width : 60%;
 		margin-left: 100px;
 	}
 
@@ -106,7 +121,6 @@
 		position : static;
 		width: 90%;
 		height : 80%;
-		margin-top: 20px;
 	
 	}
 	
@@ -115,10 +129,7 @@
 		margin-top: 20px;
 		
 	}
-	
 
-
-	
 	.reply_button a{
 		text-decoration: none;
 		font-size: 15px;
@@ -153,7 +164,8 @@
 	}
 	
 	.repleimg{
-		width: 3%;
+		width: 10px;
+		height: 10px;
 	}
 	
 	/* 반응형  */
@@ -229,7 +241,7 @@
                       
                        	<span id="span">
 							<img id="user" alt="" src="${path }/img/avatar.svg">                       	
-	                       	${sessionScope.user.id }
+	                       	${dto.writer }
 	                        <input type="hidden" name="writer" id= "writer" value="${sessionScope.user.id }" readonly="readonly">
 							|
 							<a>조회수 ${dto.searchNum }</a>
@@ -257,14 +269,16 @@
          <tbody>
                 <tr>
                     <td class="content_area">
-                    	<c:choose>
-                    		<c:when test="${dto.board_img eq ''}">
-                    		
-                    		</c:when>
-                    		<c:otherwise>
-		                 		<img class="content_img" alt="" src="${path }/img/boardImg/${dto.board_img}">         		
-                    		</c:otherwise>
-                    	</c:choose>
+                    	<div class="img_container">
+	                    	<c:choose>
+	                    		<c:when test="${dto.board_img eq '-'}">
+			                 		<img class="no_data_img" alt="" src="${path }/img/nodata.png" >         		
+	                    		</c:when>
+	                    		<c:otherwise>
+			                 		<img class="content_img" alt="" src="${path }/img/boardImg/${dto.board_img}">         		
+	                    		</c:otherwise>
+	                    	</c:choose>
+                    	</div>
                     	<br>
                     	<c:out value="${dto.content}" escapeXml="false" />
                     	<br>
@@ -287,21 +301,27 @@
 	<c:set value="${i=1 }" var="i"></c:set>	
 	<c:forEach var="reply" items="${list }">
 			<div class="reply_list" id="reply_list">
-					<li>${reply.writer }</li>
+				<input type="hidden" id="reply_no_${i }" name="reply_no" value="${reply.no}">
+					<li class="view_writer">${reply.writer }</li>
 				
 					<li class="view_reply">
-		 				<c:forEach var="d" begin="0" end="${reply.indent }" step="1" >
-						<c:set var="jump" value = ""></c:set>
-							&nbsp;&nbsp;
-						</c:forEach>
+					<c:if test="${reply.indent == 1 }">
+						&nbsp;&nbsp;&nbsp;
+					</c:if>
 						<img class="repleimg" alt="" src="${path}/img/reple2.png">
 						${reply.content }
 					</li>
 					<li class="reply_button">
 						<c:if test="${reply.indent < 1 }">
-							<a id="write_replys_${i}" class="write_replys" href="#">댓글쓰기</a>
+							<c:if test="${sessionScope.user.id eq reply.writer }">
+								<a id="write_replys_${i}" class="write_replys" href="#">댓글쓰기</a>							
+								<button type="button" class="cancel_btn" id="cancel_btn_${i}" value="x">X</button>
+								<a href="">/</a>							
+							</c:if>
 						</c:if>
-						<button type="button" class="cancel_btn" id="cancel_btn_${i}" value="x">x</button>
+							<c:if test="${sessionScope.user.id == reply.writer }">
+								<a id="write_delete_${i}" class="write_replys" href="#">삭제</a>							
+							</c:if>
 					</li>
 					<div class="replys_write" id="replys_write_${i}">
 			    		<form name="replysForm"  style="width: 100%; padding-top: 5%"  method="post" action="${path }/ReplyGetReplys.do">
@@ -353,7 +373,7 @@ $(document).ready(function(){
 	for(let i = 1; i <= total; i++){
 		
 		$("#write_replys_"+i).on("click", function(){
-			$("#replys_write_"+i).css("margin-top", "20px");
+			$(".button").css("bottom", "77%");
 			$("#replys_write_"+i).show();
 			$("#cancel_btn_"+i).show();
 						
@@ -362,8 +382,44 @@ $(document).ready(function(){
 		$("#cancel_btn_"+i).on("click", function(){
 			$("#replys_write_"+i).hide();
 			$("#cancel_btn_"+i).hide();
+			$(".button").css("bottom", "74%");
 						
 	  	});
+		
+		
+		$("#write_delete_"+i).on("click", function(){
+			
+			let reply_no = $("#reply_no_"+i).val();
+			if(reply_no > 0){
+				if(confirm('정말 삭제하시겠습니까?')){
+					$.ajax({
+						url: "${path}/DeleteReply.do",
+						type: "POST",
+						dataType: "json",
+						data : "no="+reply_no,
+						success : function (data){
+							if(data.message == "1"){
+								alert("삭제가 완료되었습니다");
+								document.location.reload(true);
+
+							}else{
+								alert("삭제하는 도중 오류가 발생되었습니다");
+								return;
+							}
+						},
+						error : function () {
+							alert("system error");					
+						}
+						 
+					});
+				}
+			}
+			
+						
+	  	});
+
+		
+
 		
 		$("#replys_btn_"+i).on("click", function(){
 			

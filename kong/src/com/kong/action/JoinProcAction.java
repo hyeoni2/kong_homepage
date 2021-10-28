@@ -57,7 +57,7 @@ public class JoinProcAction implements Action {
 		forward.setPath(url);
 		forward.setRedirect(false);
 		
-		return forward;
+		return null;
 	}
 
 }

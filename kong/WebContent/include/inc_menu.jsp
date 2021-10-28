@@ -18,7 +18,7 @@
                 <i class="fas fa-bars" id="btn"></i>
                 <i class="fas fa-times" id="cancel"></i>
             </label>
-           		 <img src="${path }/img/nav_logo.png">
+           		 <img src="${path }/img/nav_logo2.png">
 
             <ul>
                 <li><a href="${path }/Index.do">home</a></li>

@@ -24,7 +24,7 @@
         </div>
         <div class="login-container">
             <form name="loginForm" method="post">
-                <img class="logo" src="${path }/img/logo.png">
+                <img class="logo" src="${path }/img/logo2.png">
                 <h2>Welcome!</h2>
                 <div class="input-div user" id="user">
                     <div class="i">
